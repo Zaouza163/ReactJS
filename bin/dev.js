@@ -5,7 +5,6 @@ const path = require('path');
 const webpackDevMiddleware = require('webpack-dev-middleware');
 const webpackHotMiddleware = require('webpack-hot-middleware');
 const express = require('express');
-const webpackDevServer = require('webpack-dev-server');
 
 const hmrServer = express();
 const clientCompiler = webpack(webpackClientConfig);
@@ -18,7 +17,7 @@ hmrServer.use(webpackDevMiddleware(clientCompiler, {
         ignore: /dist/
     },
     writeToDisk: true,
-    stats: 'error-only'
+    stats: 'errors-only'
 }));
 
 hmrServer.use(webpackHotMiddleware(clientCompiler, {
